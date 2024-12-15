@@ -22,14 +22,6 @@
                 <MenuItem Command="ApplicationCommands.Cut"/>
                 <MenuItem Command="ApplicationCommands.Close"/>
             </MenuItem>
-            <MenuItem Header="_ViewSelect" x:Name="viewSelect">
-                <MenuItem Header="Order" IsCheckable="False"
-                          IsChecked="True" Click="OrderClick"/>
-                <MenuItem Header="Product" IsCheckable="False"
-                          IsChecked="False" Click="ProductClick"/>
-                <MenuItem Header="Customer" IsCheckable="False"
-                          IsChecked="False" Click="CusotmerClick"/>
-            </MenuItem>
         </Menu>
 
         
