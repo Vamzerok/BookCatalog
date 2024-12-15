@@ -23,7 +23,6 @@
                 <MenuItem Command="ApplicationCommands.Close"/>
             </MenuItem>
         </Menu>
-
         
         <Grid x:Name="listView" Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
