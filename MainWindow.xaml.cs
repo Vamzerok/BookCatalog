@@ -34,6 +34,7 @@ namespace WebShop
             InitializeComponent();
 
             dataBase = new DataBase();
+            dataBase.Import("../ ../resources/books.json");
         }
 
         //what desperation looks like

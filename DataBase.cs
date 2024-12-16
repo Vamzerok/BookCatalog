@@ -14,5 +14,9 @@ namespace WebShop
 {
     internal class DataBase
     {
+        public void Import(string path)
+        {
+            JsonConvert.DeserializeObject<Book>(path);
+        }
     }
 }
