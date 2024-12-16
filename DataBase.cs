@@ -14,9 +14,44 @@ namespace WebShop
 {
     internal class DataBase
     {
-        public void Import(string path)
+        public List<Book> Records {  get; set; }
+        public string ExportPath {  get; set; }
+        public string ImportPath { get; set; }
+
+        public DataBase() 
         {
-            JsonConvert.DeserializeObject<Book>(path);
+            Records = new List<Book>();
+        }
+        public void Import()
+        {
+            try
+            {
+                string jsonContent = File.ReadAllText(ImportPath);
+
+                Records = JsonConvert.DeserializeObject<List<Book>>(jsonContent);
+
+                //MessageBox.Show("Successful import!");
+            }
+            catch(Exception ex) //TODO  
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+        public void Export() 
+        {
+            try
+            {
+                string jsonContent = JsonConvert.SerializeObject(this.Records);
+
+                File.WriteAllText(ExportPath, jsonContent);
+
+                //MessageBox.Show("Successful export!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebShop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height=".1*"/>
@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
         <Menu Background="Transparent" x:Name="menu">
@@ -40,10 +40,7 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
-            <Grid x:Name="detailsViewMain">
-                <ListBox x:Name="lbTest"></ListBox>
-
-            </Grid>
+            <Grid x:Name="detailsViewMain"/>
 
             <Grid x:Name="buttonColumns" Grid.Row="1" >
                 <Grid.ColumnDefinitions>
