@@ -72,7 +72,7 @@ namespace WebShop
                 }
                 catch
                 {
-                    ShowImagePathSelectDialog();
+                    MessageBox.Show("Could not load image :/");
                 }
 
                 //create label
@@ -120,10 +120,6 @@ namespace WebShop
                 this.Children.Add(lb);
             }
 
-        }
-        private void ShowImagePathSelectDialog()
-        {
-            MessageBox.Show("Select an image", "iamge");
         }
     }
 }
