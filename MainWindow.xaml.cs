@@ -47,11 +47,13 @@ namespace WebShop
             listbox.Items.Clear();
             foreach(Book book in dataBase.Records)
             {
-                var lbItem = new ListBoxItem();
+                var lbItem = new ListBoxItem()
+                {
+                    Content = book.Title
+                };
                 lbItem.Selected += (sender, e) => {
                     LoadDetailsView(book); 
                 };
-                lbItem.Content = book.Title;
                 listbox.Items.Add(lbItem);
             }
             lbStatistics.Content = $"Könyvek darabszáma: {dataBase.Records.Count()}";
@@ -82,6 +84,7 @@ namespace WebShop
             book.Pages = int.Parse(DetailsView.TextBoxes.Find(e => e.Name == "Pages").Text);
             book.Title = DetailsView.TextBoxes.Find(e => e.Name == "Title").Text;
             book.Year = int.Parse(DetailsView.TextBoxes.Find(e => e.Name == "Year").Text);
+            LoadListView();
         }
 
         private void btn_Duplicate_Click(object sender, RoutedEventArgs e)

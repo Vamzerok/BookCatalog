@@ -80,7 +80,7 @@ namespace WebShop
                 {
                     Content = book.Title,
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Bottom,
+                    VerticalAlignment = VerticalAlignment.Top,
                     Margin = new Thickness(5)
                 };
 
