@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
         <Menu Background="Transparent" x:Name="menu">
@@ -48,7 +48,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="btn_Save" IsEnabled="False" Grid.Column="0" Content="Save" HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch" Click="btn_Save_Click"/>
+                <Button x:Name="btn_Save" IsEnabled="False" Grid.Column="0" Content="Save to file" HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch" Click="btn_Save_Click"/>
                 <Button x:Name="btn_Copy" IsEnabled="False" Grid.Column="1" Content="Copy" HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch" Click="btn_Copy_Click"/>
                 <Button x:Name="btn_Delete" IsEnabled="False" Grid.Column="2" Content="Delete" HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch" Click="btn_Delete_Click"/>
 

@@ -49,7 +49,9 @@ namespace WebShop
             foreach(Book book in dataBase.Records)
             {
                 var lbItem = new ListBoxItem();
-                lbItem.Selected += (sender, e) => { LoadDetailsView(book); };
+                lbItem.Selected += (sender, e) => {
+                    LoadDetailsView(book); dataBase.CurrentlySelected = book; 
+                };
                 lbItem.Content = book.Title;
                 listbox.Items.Add(lbItem);
             }
@@ -68,6 +70,7 @@ namespace WebShop
         //---------- events ----------  
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
+            dataBase.Export();
         }
 
         private void btn_Copy_Click(object sender, RoutedEventArgs e)
@@ -76,6 +79,9 @@ namespace WebShop
 
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {
+            dataBase.Delete();
+            detailsViewMain.Children.Clear();
+            LoadListView();
         } 
     }
 }

@@ -9,12 +9,14 @@ using System.Security.Permissions;
 using Newtonsoft.Json.Linq;
 using System.CodeDom;
 using System.Windows;
+using System.Security.RightsManagement;
 
 namespace WebShop
 {
-    internal class DataBase
+    internal class DataBase 
     {
         public List<Book> Records {  get; set; }
+        public Book CurrentlySelected {  get; set; }
         public string ExportPath {  get; set; }
         public string ImportPath { get; set; }
 
@@ -46,12 +48,21 @@ namespace WebShop
 
                 File.WriteAllText(ExportPath, jsonContent);
 
-                //MessageBox.Show("Successful export!");
+                MessageBox.Show("Successful export!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
+        }
+
+        public void Delete(Predicate<Book> predicate)
+        {
+            Records.RemoveAll(predicate);
+        }
+        public void Delete()
+        {
+            this.Records.Remove(CurrentlySelected);
         }
     }
 }
