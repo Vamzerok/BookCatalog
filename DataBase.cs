@@ -17,7 +17,21 @@ namespace WebShop
     {
         public List<Book> Records {  get; set; }
         public Book CurrentlySelected {  get; set; }
-        public string ExportPath {  get; set; }
+        public string ExportPath 
+        {
+            get
+            {
+                var dialog = new Microsoft.Win32.OpenFileDialog();
+                // Show open file dialog box
+                bool? result = dialog.ShowDialog();
+
+                // Process open file dialog box results
+                if (result == false) return null;
+
+                // Open document
+                return dialog.FileName;
+            }
+        }
         public string ImportPath { get; set; }
 
         public DataBase() 
@@ -44,7 +58,7 @@ namespace WebShop
         {
             try
             {
-                string jsonContent = JsonConvert.SerializeObject(this.Records);
+                string jsonContent = JsonConvert.SerializeObject(this.Records, Formatting.Indented);
 
                 File.WriteAllText(ExportPath, jsonContent);
 
@@ -54,6 +68,11 @@ namespace WebShop
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
+        }
+
+        public void Insert(Book book)
+        {
+            this.Records.Add(book);
         }
 
         public void Delete(Predicate<Book> predicate)

@@ -35,8 +35,7 @@ namespace WebShop
             InitializeComponent();
 
             dataBase = new DataBase();
-            dataBase.ImportPath = "C:\\Dev\\Personal\\!School\\BookCatalog\\resources\\books.json"; //change this shit asap
-            dataBase.ExportPath = "out.json";
+            dataBase.ImportPath = "..\\..\\resources\\books.json"; //change this shit asap
 
             dataBase.Import();
 
@@ -50,31 +49,57 @@ namespace WebShop
             {
                 var lbItem = new ListBoxItem();
                 lbItem.Selected += (sender, e) => {
-                    LoadDetailsView(book); dataBase.CurrentlySelected = book; 
+                    LoadDetailsView(book); 
                 };
                 lbItem.Content = book.Title;
                 listbox.Items.Add(lbItem);
             }
+            lbStatistics.Content = $"Könyvek darabszáma: {dataBase.Records.Count()}";
         }
 
         private void LoadDetailsView(Book book)
         {
-            btn_Copy.IsEnabled = true;
+            btn_Duplicate.IsEnabled = true;
             btn_Delete.IsEnabled = true;
             btn_Save.IsEnabled = true;
 
+            dataBase.CurrentlySelected = book;
+
             detailsViewMain.Children.Clear();
-            detailsViewMain.Children.Add(book.RenderDetails());
+            detailsViewMain.Children.Add(new DetailsView(book));
         }
 
         //---------- events ----------  
-        private void btn_Save_Click(object sender, RoutedEventArgs e)
+        private void btn_Save_Click(object sender, RoutedEventArgs r)
         {
-            dataBase.Export();
+            //kids.. never fuckin' do this
+            var book = dataBase.CurrentlySelected;
+            book.Author = DetailsView.TextBoxes.Find(e => e.Name == "Author").Text; 
+            book.Country = DetailsView.TextBoxes.Find(e => e.Name == "Country").Text;
+            book.ImageLink = DetailsView.TextBoxes.Find(e => e.Name == "ImageLink").Text;
+            book.Language = DetailsView.TextBoxes.Find(e => e.Name == "Language").Text;
+            book.Link = DetailsView.TextBoxes.Find(e => e.Name == "Link").Text;
+            book.Pages = int.Parse(DetailsView.TextBoxes.Find(e => e.Name == "Pages").Text);
+            book.Title = DetailsView.TextBoxes.Find(e => e.Name == "Title").Text;
+            book.Year = int.Parse(DetailsView.TextBoxes.Find(e => e.Name == "Year").Text);
         }
 
-        private void btn_Copy_Click(object sender, RoutedEventArgs e)
+        private void btn_Duplicate_Click(object sender, RoutedEventArgs e)
         {
+            dataBase.Insert(dataBase.CurrentlySelected);
+            LoadListView();
+        }
+        private void btn_SaveToFile_Click(object sender, RoutedEventArgs e)
+        {
+            dataBase.Export();
+            LoadListView(); //why not
+        }
+        private void btn_Add_Click(object sender, RoutedEventArgs e)
+        {
+            Book book = new Book();
+            dataBase.Insert(book);
+            LoadListView();
+            LoadDetailsView(book);
         }
 
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
